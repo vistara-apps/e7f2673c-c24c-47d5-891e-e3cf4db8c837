@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-gray-200;
+  }
+  
+  body {
+    @apply bg-gradient-to-br from-crypto-dark via-indigo-900 to-purple-900 text-white min-h-screen;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white bg-opacity-10 backdrop-blur-md border border-white border-opacity-20 rounded-lg shadow-card;
+  }
+  
+  .btn-primary {
+    @apply bg-gradient-to-r from-crypto-blue to-crypto-purple text-white px-6 py-3 rounded-lg font-medium hover:from-blue-600 hover:to-purple-600 transition-all duration-200 shadow-lg hover:shadow-xl;
+  }
+  
+  .btn-secondary {
+    @apply bg-white bg-opacity-10 text-white px-4 py-2 rounded-md hover:bg-opacity-20 transition-all duration-200 border border-white border-opacity-20;
+  }
+  
+  .metric-card {
+    @apply glass-card p-4 hover:bg-opacity-15 transition-all duration-200;
+  }
+  
+  .price-positive {
+    @apply text-crypto-green;
+  }
+  
+  .price-negative {
+    @apply text-crypto-red;
+  }
+  
+  .chart-container {
+    @apply glass-card p-4 rounded-lg;
+  }
+  
+  .sidebar-nav {
+    @apply glass-card p-4 space-y-2;
+  }
+  
+  .nav-item {
+    @apply flex items-center space-x-3 p-3 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-200 cursor-pointer;
+  }
+  
+  .nav-item.active {
+    @apply bg-crypto-blue bg-opacity-20 text-crypto-blue;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-crypto-blue to-crypto-purple bg-clip-text text-transparent;
+  }
+}
