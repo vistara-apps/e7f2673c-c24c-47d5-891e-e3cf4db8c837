@@ -8,9 +8,16 @@ import { MarketOverview } from '@/components/dashboard/MarketOverview';
 import { TrendingAssets } from '@/components/dashboard/TrendingAssets';
 import { PortfolioSummary } from '@/components/portfolio/PortfolioSummary';
 import { AlertsList } from '@/components/alerts/AlertsList';
+import { AssetCard } from '@/components/ui/AssetCard';
+import { SimpleChart } from '@/components/ui/SimpleChart';
+import { useNotifications } from '@/components/ui/NotificationBanner';
+import { Button } from '@/components/ui/Button';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
+import { Zap, TrendingUp, Bell, Settings } from 'lucide-react';
 
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState('dashboard');
+  const { showSuccess, showInfo } = useNotifications();
 
   const renderContent = () => {
     switch (activeTab) {
@@ -44,6 +51,93 @@ export default function HomePage() {
         return (
           <div className="space-y-6">
             <WalletConnection />
+            
+            {/* Subscription Management */}
+            <Card variant="glass">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Zap size={20} />
+                  Subscription Plan
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h3 className="font-semibold text-white">Free Tier</h3>
+                    <p className="text-gray-400 text-sm">3 alerts maximum • Basic market data</p>
+                  </div>
+                  <Button 
+                    onClick={() => showInfo('Upgrade feature coming soon!')}
+                    className="bg-gradient-to-r from-crypto-blue to-crypto-purple"
+                  >
+                    Upgrade to Pro
+                  </Button>
+                </div>
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <p className="text-gray-400">Active Alerts</p>
+                    <p className="text-white font-semibold">3 / 3</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-400">Data Sources</p>
+                    <p className="text-white font-semibold">Basic</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Notification Settings */}
+            <Card variant="glass">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Bell size={20} />
+                  Notification Preferences
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-white font-medium">Price Alerts</p>
+                      <p className="text-gray-400 text-sm">Get notified when price targets are hit</p>
+                    </div>
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      onClick={() => showSuccess('Price alerts enabled!')}
+                    >
+                      Enabled
+                    </Button>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-white font-medium">Portfolio Updates</p>
+                      <p className="text-gray-400 text-sm">Daily portfolio performance summaries</p>
+                    </div>
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      onClick={() => showSuccess('Portfolio updates enabled!')}
+                    >
+                      Enabled
+                    </Button>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-white font-medium">Market News</p>
+                      <p className="text-gray-400 text-sm">Breaking news and market updates</p>
+                    </div>
+                    <Button 
+                      variant="ghost" 
+                      size="sm"
+                      onClick={() => showInfo('Market news notifications disabled')}
+                    >
+                      Disabled
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         );
       default:
