@@ -1,0 +1,30 @@
+{
+  "accountAssociation": {
+    "header": "",
+    "payload": "",
+    "signature": ""
+  },
+  "frame": {
+    "version": "1",
+    "name": "CryptoTrend ProFX",
+    "subtitle": "Built with Zara",
+    "description": "CryptoTrend ProFX is a Base Mini App built with Zara.",
+    "iconUrl": "https://0co.to/images/zara-2.png",
+    "homeUrl": "https://e7f2673cc24c47d5891ee3cf4db8c837-7twf.vercel.app",
+    "splashImageUrl": "https://e7f2673cc24c47d5891ee3cf4db8c837-7twf.vercel.app/splash.png",
+    "splashBackgroundColor": "#000000",
+    "heroImageUrl": "https://e7f2673cc24c47d5891ee3cf4db8c837-7twf.vercel.app/image.png",
+    "tagline": "CryptoTrend ProFX",
+    "screenshotUrls": [
+      "https://e7f2673cc24c47d5891ee3cf4db8c837-7twf.vercel.app/screenshot.png",
+      "https://e7f2673cc24c47d5891ee3cf4db8c837-7twf.vercel.app/screenshot.png"
+    ],
+    "primaryCategory": "social",
+    "tags": [
+      "base",
+      "miniapp",
+      "onchainkit"
+    ],
+    "webhookUrl": "https://e7f2673cc24c47d5891ee3cf4db8c837-7twf.vercel.app/api/webhook"
+  }
+}

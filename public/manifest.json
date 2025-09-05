@@ -1,0 +1,14 @@
+{
+  "name": "CryptoTrend ProFX",
+  "description": "CryptoTrend ProFX is a Base Mini App built with Zara.",
+  "image": "https://dummyimage.com/1200x628/0a0b0d/ffffff.png&text=OG",
+  "external_url": "https://e7f2673c-c24c-47d5-891e-e3cf4db8c837.vercel.app",
+  "properties": {
+    "app": {
+      "name": "CryptoTrend ProFX",
+      "description": "CryptoTrend ProFX is a Base Mini App built with Zara.",
+      "url": "https://e7f2673c-c24c-47d5-891e-e3cf4db8c837.vercel.app",
+      "icon": "https://0co.to/images/zara-2.png"
+    }
+  }
+}
