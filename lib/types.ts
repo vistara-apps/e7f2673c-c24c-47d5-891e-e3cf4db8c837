@@ -126,7 +126,7 @@ export interface CoinGeckoMarketData {
   atl: number;
   atl_change_percentage: number;
   atl_date: string;
-  roi: any;
+  roi: { times: number; currency: string; percentage: number } | null;
   last_updated: string;
 }
 
@@ -145,7 +145,7 @@ export interface AlertConfiguratorProps {
 
 export interface SimpleChartProps {
   data: ChartDataPoint[];
-  variant?: 'line' | 'bar';
+  variant?: 'line' | 'bar' | 'area';
   height?: number;
   showGrid?: boolean;
   color?: string;
@@ -177,5 +177,32 @@ export interface SubscriptionTier {
     alerts: number;
     portfolios: number;
     apiCalls: number;
+  };
+}
+
+// Portfolio Item Type (for API responses)
+export interface PortfolioItem {
+  portfolioId: string;
+  userId: string;
+  asset: string;
+  symbol: string;
+  quantity: number;
+  averageBuyPrice: number;
+  currentPrice: number;
+  totalValue: number;
+  pnl: number;
+  pnlPercentage: number;
+  transactions: Transaction[];
+  lastUpdated: Date;
+}
+
+// News Item Type
+export interface NewsItem {
+  title: string;
+  description: string;
+  url: string;
+  publishedAt: Date;
+  source: {
+    name: string;
   };
 }

@@ -94,11 +94,11 @@ export function generateId(): string {
 }
 
 // Debounce function
-export function debounce<T extends (...args: any[]) => any>(
+export function debounce<T extends (...args: unknown[]) => unknown>(
   func: T,
   wait: number
 ): (...args: Parameters<T>) => void {
-  let timeout: NodeJS.Timeout;
+  let timeout: ReturnType<typeof setTimeout>;
   return (...args: Parameters<T>) => {
     clearTimeout(timeout);
     timeout = setTimeout(() => func(...args), wait);
@@ -106,7 +106,7 @@ export function debounce<T extends (...args: any[]) => any>(
 }
 
 // Throttle function
-export function throttle<T extends (...args: any[]) => any>(
+export function throttle<T extends (...args: unknown[]) => unknown>(
   func: T,
   limit: number
 ): (...args: Parameters<T>) => void {
@@ -181,15 +181,19 @@ export const storage = {
 };
 
 // API error handler
-export function handleApiError(error: any): string {
-  if (error?.response?.status === 429) {
-    return 'Rate limit exceeded. Please try again later.';
+export function handleApiError(error: unknown): string {
+  if (error && typeof error === 'object' && 'response' in error) {
+    const errorWithResponse = error as { response: { status: number } };
+    if (errorWithResponse.response?.status === 429) {
+      return 'Rate limit exceeded. Please try again later.';
+    }
+    if (errorWithResponse.response?.status >= 500) {
+      return 'Server error. Please try again later.';
+    }
   }
-  if (error?.response?.status >= 500) {
-    return 'Server error. Please try again later.';
-  }
-  if (error?.message) {
-    return error.message;
+  if (error && typeof error === 'object' && 'message' in error) {
+    const errorWithMessage = error as { message: string };
+    return errorWithMessage.message;
   }
   return 'An unexpected error occurred.';
 }

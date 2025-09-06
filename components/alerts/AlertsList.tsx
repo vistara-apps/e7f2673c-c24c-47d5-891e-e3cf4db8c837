@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/Badge';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { Bell, Plus, Trash2, Pause, Play } from 'lucide-react';
 import { Alert } from '@/lib/types';
+import { AlertConfigurator } from './AlertConfigurator';
 import { fetchUserAlerts } from '@/lib/api';
 import { formatCurrency, formatTimeAgo } from '@/lib/utils';
 
@@ -14,6 +15,7 @@ export function AlertsList() {
   const [alerts, setAlerts] = useState<Alert[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [showConfigurator, setShowConfigurator] = useState(false);
 
   useEffect(() => {
     async function loadAlerts() {
@@ -73,6 +75,43 @@ export function AlertsList() {
     }
   };
 
+  const handleSaveAlert = async (alertData: Omit<Alert, 'alertId' | 'userId' | 'createdAt'>) => {
+    try {
+      // In production, call POST /api/alerts
+      const response = await fetch('/api/alerts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userId: 'user-1', // Get from auth context
+          ...alertData,
+        }),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        if (result.success) {
+          setAlerts(prev => [...prev, result.data]);
+          setShowConfigurator(false);
+        }
+      }
+    } catch (err) {
+      console.error('Error creating alert:', err);
+    }
+  };
+
+
+
+  if (showConfigurator) {
+    return (
+      <AlertConfigurator
+        onSave={handleSaveAlert}
+        onCancel={() => setShowConfigurator(false)}
+      />
+    );
+  }
+
   if (loading) {
     return (
       <Card variant="glass">
@@ -111,7 +150,7 @@ export function AlertsList() {
             <Bell size={20} />
             Your Alerts ({alerts.length})
           </CardTitle>
-          <Button variant="primary" size="sm">
+          <Button variant="primary" size="sm" onClick={() => setShowConfigurator(true)}>
             <Plus size={16} className="mr-2" />
             Create Alert
           </Button>
@@ -122,7 +161,7 @@ export function AlertsList() {
           <div className="text-center py-8">
             <Bell size={48} className="mx-auto text-gray-400 mb-4" />
             <p className="text-gray-300 mb-4">No alerts configured yet</p>
-            <Button variant="primary">
+            <Button variant="primary" onClick={() => setShowConfigurator(true)}>
               <Plus size={16} className="mr-2" />
               Create Your First Alert
             </Button>
