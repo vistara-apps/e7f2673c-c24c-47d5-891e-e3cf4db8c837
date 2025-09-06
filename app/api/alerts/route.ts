@@ -6,7 +6,7 @@ import { Alert } from '@/lib/types';
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const userId = searchParams.get('userId');
-  const clientIP = request.ip || 'anonymous';
+  const clientIP = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'anonymous';
 
   if (!userId) {
     return NextResponse.json(
@@ -36,7 +36,7 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  const clientIP = request.ip || 'anonymous';
+  const clientIP = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'anonymous';
 
   // Rate limiting
   if (!rateLimiter.canMakeRequest(clientIP)) {
@@ -91,7 +91,7 @@ export async function POST(request: NextRequest) {
 export async function DELETE(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const alertId = searchParams.get('alertId');
-  const clientIP = request.ip || 'anonymous';
+  const clientIP = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'anonymous';
 
   if (!alertId) {
     return NextResponse.json(

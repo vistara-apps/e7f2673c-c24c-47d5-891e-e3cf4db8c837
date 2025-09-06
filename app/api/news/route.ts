@@ -6,7 +6,7 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const query = searchParams.get('query') || 'cryptocurrency';
   const limit = parseInt(searchParams.get('limit') || '10');
-  const clientIP = request.ip || 'anonymous';
+  const clientIP = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'anonymous';
 
   // Rate limiting
   if (!rateLimiter.canMakeRequest(clientIP)) {

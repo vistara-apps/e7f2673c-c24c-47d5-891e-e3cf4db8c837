@@ -58,7 +58,7 @@ export function AssetCard({ asset, variant = 'compact', onClick }: AssetCardProp
                 <h3 className="font-bold text-white text-lg">{asset.symbol}</h3>
                 <p className="text-gray-400 text-sm">{asset.name}</p>
                 {asset.rank && (
-                  <Badge variant="outline" size="sm" className="mt-1">
+                  <Badge variant="info" size="sm" className="mt-1">
                     #{asset.rank}
                   </Badge>
                 )}

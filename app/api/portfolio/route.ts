@@ -5,7 +5,7 @@ import { rateLimiter } from '@/lib/api';
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const userId = searchParams.get('userId');
-  const clientIP = request.ip || 'anonymous';
+  const clientIP = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'anonymous';
 
   if (!userId) {
     return NextResponse.json(
@@ -35,7 +35,7 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  const clientIP = request.ip || 'anonymous';
+  const clientIP = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'anonymous';
 
   // Rate limiting
   if (!rateLimiter.canMakeRequest(clientIP)) {

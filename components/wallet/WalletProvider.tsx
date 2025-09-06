@@ -28,7 +28,7 @@ interface WalletProviderProps {
 
 export function WalletProvider({ children }: WalletProviderProps) {
   const { address, isConnected } = useAccount();
-  const { connect, connectors, isLoading } = useConnect();
+  const { connect, connectors, isPending } = useConnect();
   const { disconnect } = useDisconnect();
   const [error, setError] = useState<string | null>(null);
 
@@ -59,7 +59,7 @@ export function WalletProvider({ children }: WalletProviderProps) {
   const value: WalletContextType = {
     isConnected,
     address,
-    isConnecting: isLoading,
+    isConnecting: isPending,
     connect: handleConnect,
     disconnect: handleDisconnect,
     error,

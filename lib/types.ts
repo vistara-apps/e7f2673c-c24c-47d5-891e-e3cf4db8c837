@@ -145,7 +145,7 @@ export interface AlertConfiguratorProps {
 
 export interface SimpleChartProps {
   data: ChartDataPoint[];
-  variant?: 'line' | 'bar';
+  variant?: 'line' | 'bar' | 'area';
   height?: number;
   showGrid?: boolean;
   color?: string;

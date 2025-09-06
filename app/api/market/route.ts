@@ -6,7 +6,7 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const type = searchParams.get('type') || 'market';
   const ids = searchParams.get('ids')?.split(',') || ['bitcoin', 'ethereum', 'binancecoin'];
-  const clientIP = request.ip || 'anonymous';
+  const clientIP = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'anonymous';
 
   // Rate limiting
   if (!rateLimiter.canMakeRequest(clientIP)) {

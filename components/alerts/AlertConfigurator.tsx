@@ -244,7 +244,7 @@ export function AlertConfigurator({ asset, onSave, onCancel }: AlertConfigurator
             <div className="p-4 bg-gray-800 bg-opacity-50 rounded-lg">
               <h4 className="font-semibold text-white mb-2">Alert Preview</h4>
               <div className="flex items-center gap-2">
-                <Badge variant="outline" className="text-crypto-blue border-crypto-blue">
+                <Badge variant="info" className="text-crypto-blue border-crypto-blue">
                   {formData.symbol}
                 </Badge>
                 <span className="text-gray-300">
