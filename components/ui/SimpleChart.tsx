@@ -27,7 +27,7 @@ export function SimpleChart({
     }));
   }, [data]);
 
-  const CustomTooltip = ({ active, payload }: any) => {
+  const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: Array<{ payload: { date: string; price: number; formattedDate: string; formattedTime: string; volume?: number }; value: number }> }) => {
     if (active && payload && payload.length) {
       const data = payload[0].payload;
       return (
