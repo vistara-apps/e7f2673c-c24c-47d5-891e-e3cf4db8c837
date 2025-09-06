@@ -171,7 +171,7 @@ async function generateDashboardImage(width: number, height: number): Promise<st
         </text>
       </svg>
     `;
-  } catch (error) {
+  } catch {
     return generateErrorImage();
   }
 }

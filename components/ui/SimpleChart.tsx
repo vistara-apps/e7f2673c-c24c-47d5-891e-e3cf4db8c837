@@ -3,7 +3,7 @@
 import { useMemo } from 'react';
 import { LineChart, Line, AreaChart, Area, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { SimpleChartProps, ChartDataPoint } from '@/lib/types';
-import { formatCurrency, formatPercentage } from '@/lib/utils';
+import { formatCurrency } from '@/lib/utils';
 
 export function SimpleChart({ 
   data, 
@@ -27,7 +27,7 @@ export function SimpleChart({
     }));
   }, [data]);
 
-  const CustomTooltip = ({ active, payload, label }: any) => {
+  const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
       const data = payload[0].payload;
       return (

@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
     }
 
     const buttonIndex = untrustedData.buttonIndex;
-    const fid = untrustedData.fid;
+    // const fid = untrustedData.fid; // Store for potential future use
 
     // Handle different button actions
     let responseFrame;

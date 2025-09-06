@@ -8,12 +8,10 @@ import { MarketOverview } from '@/components/dashboard/MarketOverview';
 import { TrendingAssets } from '@/components/dashboard/TrendingAssets';
 import { PortfolioSummary } from '@/components/portfolio/PortfolioSummary';
 import { AlertsList } from '@/components/alerts/AlertsList';
-import { AssetCard } from '@/components/ui/AssetCard';
-import { SimpleChart } from '@/components/ui/SimpleChart';
 import { useNotifications } from '@/components/ui/NotificationBanner';
 import { Button } from '@/components/ui/Button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
-import { Zap, TrendingUp, Bell, Settings } from 'lucide-react';
+import { Zap, Bell } from 'lucide-react';
 
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState('dashboard');

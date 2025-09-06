@@ -4,7 +4,7 @@ import { rateLimiter } from '@/lib/api';
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
-  const query = searchParams.get('query') || 'cryptocurrency';
+  // const query = searchParams.get('query') || 'cryptocurrency'; // For future use
   const limit = parseInt(searchParams.get('limit') || '10');
   const clientIP = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'anonymous';
 
@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const news = await fetchCryptoNews(query);
+    const news = await fetchCryptoNews();
     const limitedNews = news.slice(0, limit);
     
     return NextResponse.json(createApiResponse(limitedNews, true, 'News fetched successfully'));

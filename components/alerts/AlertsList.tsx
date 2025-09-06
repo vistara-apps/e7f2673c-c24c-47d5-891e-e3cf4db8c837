@@ -5,7 +5,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
-import { Bell, Plus, Trash2, Pause, Play, TrendingUp, TrendingDown, Volume2, Newspaper } from 'lucide-react';
+import { Bell, Plus, Trash2, Pause, Play } from 'lucide-react';
 import { Alert } from '@/lib/types';
 import { AlertConfigurator } from './AlertConfigurator';
 import { fetchUserAlerts } from '@/lib/api';
@@ -101,20 +101,7 @@ export function AlertsList() {
     }
   };
 
-  const getConditionIcon = (conditionType: Alert['conditionType']) => {
-    switch (conditionType) {
-      case 'price_above':
-        return <TrendingUp size={16} className="text-green-400" />;
-      case 'price_below':
-        return <TrendingDown size={16} className="text-red-400" />;
-      case 'volume_spike':
-        return <Volume2 size={16} className="text-blue-400" />;
-      case 'news_mention':
-        return <Newspaper size={16} className="text-purple-400" />;
-      default:
-        return <Bell size={16} className="text-gray-400" />;
-    }
-  };
+
 
   if (showConfigurator) {
     return (

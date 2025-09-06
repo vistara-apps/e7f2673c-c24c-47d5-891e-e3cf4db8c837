@@ -137,7 +137,7 @@ export async function fetchUserAlerts(userId: string): Promise<any[]> {
 }
 
 // News API functions (mock for now)
-export async function fetchCryptoNews(query: string = 'cryptocurrency'): Promise<any[]> {
+export async function fetchCryptoNews(): Promise<any[]> {
   // Mock news data
   return [
     {
