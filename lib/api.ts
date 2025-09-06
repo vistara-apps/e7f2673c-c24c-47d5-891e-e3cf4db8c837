@@ -1,5 +1,5 @@
 import { API_ENDPOINTS } from './constants';
-import { CoinGeckoMarketData, MarketData, ApiResponse } from './types';
+import { CoinGeckoMarketData, MarketData, ApiResponse, PortfolioItem, Alert, NewsItem } from './types';
 
 // CoinGecko API functions
 export async function fetchMarketData(
@@ -45,7 +45,7 @@ export async function fetchTrendingCoins(): Promise<MarketData[]> {
     }
 
     const data = await response.json();
-    const trendingIds = data.coins.slice(0, 10).map((coin: any) => coin.item.id);
+    const trendingIds = data.coins.slice(0, 10).map((coin: { item: { id: string } }) => coin.item.id);
     
     return await fetchMarketData(trendingIds);
   } catch (error) {
@@ -76,7 +76,7 @@ export async function fetchCoinHistory(
 }
 
 // Mock API functions for development
-export async function fetchPortfolioData(userId: string): Promise<any[]> {
+export async function fetchPortfolioData(userId: string): Promise<PortfolioItem[]> {
   // Mock portfolio data
   return [
     {
@@ -110,7 +110,7 @@ export async function fetchPortfolioData(userId: string): Promise<any[]> {
   ];
 }
 
-export async function fetchUserAlerts(userId: string): Promise<any[]> {
+export async function fetchUserAlerts(userId: string): Promise<Alert[]> {
   // Mock alerts data
   return [
     {
@@ -137,7 +137,7 @@ export async function fetchUserAlerts(userId: string): Promise<any[]> {
 }
 
 // News API functions (mock for now)
-export async function fetchCryptoNews(): Promise<any[]> {
+export async function fetchCryptoNews(): Promise<NewsItem[]> {
   // Mock news data
   return [
     {
